@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Kandırıldın 😄</title>
+  <style>
+    #typingText {
+      font-size: 32px;
+      color: #8b008b;
+      text-align: center;
+      margin-top: 30px;
+      font-family: 'Courier New', monospace;
+    }
+    body {
+      background-color: #fff0f5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive;
+      animation: backgroundFlash 2s infinite;
+    }
+
+    h1 {
+      font-size: 60px;
+      color: #ff1493;
+      text-align: center;
+      animation: bounce 1s infinite;
+      font-family: Impact, fantasy;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-25px); }
+    }
+
+    @keyframes backgroundFlash {
+      0%, 100% { background-color: #fff0f5; }
+      50% { background-color: #ffe6f2; }
+    }
+
+    .prank-image {
+      width: 80%;
+      max-width: 600px;
+      margin-top: 40px;
+      border-radius: 12px;
+    }
+
+    #continueButton {
+      margin-top: 40px;
+      padding: 15px 30px;
+      font-size: 20px;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      display: none;
+      font-family: 'Comic Sans MS', cursive;
+      box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+    }
+    #continueButton:hover {
+      background-color: #ff1493;
+    }
+  </style>
+</head>
+<body>
+  <h1>KANDIRILDIN XD </h1>
+  <div id="typingText"></div>
+  <img src="kandirildin.jpg" alt="Şaka resmi" class="prank-image">
+  <button id="continueButton">Devam Et</button>
+  <script>
+    const text = "Şaka şaka 😂 Devam Et butonuna bas, yaklaştık...";
+    const typingDiv = document.getElementById("typingText");
+
+    setTimeout(() => {
+      let i = 0;
+      const interval = setInterval(() => {
+        typingDiv.textContent += text[i];
+        i++;
+        if (i >= text.length) {
+          clearInterval(interval);
+          document.getElementById("continueButton").style.display = "block";
+        }
+      }, 80);
+    }, 2000); // 2 saniye beklemeden sonra başlasın
+
+    document.getElementById("continueButton").addEventListener("click", () => {
+      window.location.href = "sonasama.html";
+    });
+  </script>
+</body>
+</html>

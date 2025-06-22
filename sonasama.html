@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Son Aşama</title>
+  <style>
+    body {
+      background-color: #fff0f5;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      color: #8b008b;
+      text-align: center;
+    }
+    h1 {
+      font-size: 40px;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(230, 0, 100, 0.7);
+    }
+    #buttonContainer {
+      margin-top: 30px;
+    }
+    button {
+      padding: 12px 30px;
+      font-size: 20px;
+      background-color: #ff69b4;
+      border: none;
+      border-radius: 12px;
+      color: white;
+      cursor: pointer;
+      box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+      margin: 0 10px;
+      transition: background-color 0.3s ease;
+      position: relative;
+    }
+    button:hover {
+      background-color: #ff1493;
+    }
+  </style>
+</head>
+<body>
+  <h1>Baronu çok seviyorum ve çok aşığım ❤️</h1>
+  <div id="buttonContainer">
+    <button id="yesBtn">Evet</button>
+    <button id="noBtn">Hayır</button>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById('noBtn');
+    const yesBtn = document.getElementById('yesBtn');
+
+    function moveButton() {
+      const containerWidth = window.innerWidth;
+      const maxOffset = containerWidth - noBtn.offsetWidth - 20;
+      const randomX = Math.floor(Math.random() * maxOffset);
+
+      noBtn.style.position = 'absolute';
+      noBtn.style.top = noBtn.offsetTop + 'px';
+      noBtn.style.left = randomX + 'px';
+    }
+
+    noBtn.addEventListener('mouseenter', moveButton);
+    noBtn.addEventListener('touchstart', moveButton);
+
+    yesBtn.addEventListener('click', () => {
+      alert('Teşekkürler! Onayladın 😊');
+    });
+  </script>
+</body>
+</html>

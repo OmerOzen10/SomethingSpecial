@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <!-- Firebase App (core SDK) -->
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+<!-- Firebase Storage -->
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-storage-compat.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sürpriz!</title>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="message" id="animatedText"></div>
+  <div id="nextStep" style="text-align:center; background: rgba(255,255,255,0.1); padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); max-width: 90%; margin: auto; font-family: 'Quicksand', sans-serif;">
+    <p style="font-size: 2rem; margin-bottom: 15px;">Devam etmek için talimatlara uyunuz:</p>
+    <p style="font-size: 1.25rem; margin-bottom: 20px;">
+      Lütfen devam etmek için <strong>kendi güzel fotoğrafını</strong> yükle. Bu sadece sana özel bir sürpriz, o yüzden senin o harika gülümsemeni görmemiz şart! 🥰
+    </p>
+    <p style="font-size: 1rem; margin-bottom: 25px; line-height: 1.6;">
+      1. Aşağıdan bir fotoğraf seç.<br>
+      2. Fotoğraf yüklendiğinde "Devam Et" butonu aktif hale gelecek.<br>
+      3. Butona tıklayarak bir sonraki sürprize geçebilirsin.
+    </p>
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 15px; margin-bottom: 20px;">
+      <input type="file" id="imageUpload" accept="image/*" style="font-size: 1.1rem;" />
+      <img id="previewImage" src="" alt="Fotoğraf önizlemesi" style="max-width: 90%; max-height: 300px; display: none; border-radius: 10px;" />
+      <button id="changePhotoBtn" style="display: none; background: none; border: none; color: #fff; text-decoration: underline; cursor: pointer;">Fotoğrafı değiştir</button>
+    </div>
+    <button id="continueBtn" disabled style="font-size: 1.25rem; padding: 10px 20px; border: none; border-radius: 10px; background-color: #ffffff; color: #a18cd1; cursor: not-allowed;">Devam Et</button>
+  </div>
+  <div class="footer">© 2025 Sitenin tüm hakları Baron Ömer’e aittir.</div>
+
+  <script src="script.js"></script>
+</body>
+</html>
