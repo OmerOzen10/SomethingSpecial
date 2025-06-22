@@ -11,11 +11,13 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
       margin: 0;
       color: #8b008b;
       text-align: center;
-      overflow: hidden;
+      overflow-x: hidden;
+      overflow-y: auto;
+      padding: 20px 0;
     }
     
     .header-text {
@@ -97,10 +99,11 @@
     #buttonContainer {
       position: relative;
       width: 100vw;
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
+      flex-wrap: wrap;
     }
     #yesBtn {
       position: relative;
@@ -130,6 +133,112 @@
     @keyframes bounce {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-10px); }
+    }
+
+    /* Mobil uyumluluk */
+    @media (max-width: 768px) {
+      body {
+        padding: 10px 0;
+        min-height: auto;
+        overflow-y: auto;
+        position: relative;
+      }
+      
+      .header-text {
+        top: 20px;
+        width: 90%;
+        position: relative;
+        margin-bottom: 30px;
+      }
+      
+      .main-title {
+        font-size: 42px;
+        letter-spacing: 1px;
+        margin-bottom: 15px;
+      }
+      
+      .subtitle {
+        font-size: 28px;
+        margin-bottom: 20px;
+      }
+      
+      button {
+        padding: 30px 55px;
+        font-size: 32px;
+        margin: 0 20px;
+        position: relative;
+        display: inline-block;
+        min-width: 180px;
+        border-radius: 18px;
+      }
+      
+      #noBtn {
+        margin-left: 25px;
+      }
+      
+      .special-image {
+        width: 250px;
+        height: 250px;
+        position: relative;
+        margin: 20px auto;
+        display: block;
+        top: auto;
+        left: auto;
+        transform: none;
+      }
+      
+      #buttonContainer {
+        margin-top: 50px;
+        min-height: auto;
+        height: auto;
+        flex-direction: column;
+        gap: 30px;
+        position: relative;
+        width: 100%;
+        padding: 20px;
+      }
+    }
+    
+    /* Çok küçük ekranlar için */
+    @media (max-width: 480px) {
+      body {
+        padding: 5px 0;
+      }
+      
+      .header-text {
+        top: 10px;
+        width: 95%;
+      }
+      
+      .main-title {
+        font-size: 38px;
+        margin-bottom: 10px;
+      }
+      
+      .subtitle {
+        font-size: 24px;
+        margin-bottom: 15px;
+      }
+      
+      button {
+        padding: 25px 50px;
+        font-size: 28px;
+        margin: 0 15px;
+        min-width: 160px;
+        border-radius: 15px;
+      }
+      
+      .special-image {
+        width: 200px;
+        height: 200px;
+        margin: 15px auto;
+      }
+      
+      #buttonContainer {
+        margin-top: 30px;
+        padding: 15px;
+        gap: 25px;
+      }
     }
   </style>
 </head>

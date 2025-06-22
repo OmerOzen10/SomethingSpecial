@@ -10,13 +10,14 @@
       font-family: 'Comic Sans MS', cursive, sans-serif;
       margin: 0;
       padding: 0;
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-      overflow: hidden;
+      overflow-x: hidden;
+      overflow-y: auto;
       animation: backgroundShift 3s ease-in-out infinite;
     }
 
@@ -167,17 +168,88 @@
 
     /* Mobil uyumluluk */
     @media (max-width: 768px) {
-      .title {
-        font-size: 32px;
-      }
-      
-      .message {
-        font-size: 20px;
+      body {
+        min-height: auto;
+        padding: 20px 10px;
+        overflow-y: auto;
       }
       
       .container {
         padding: 30px 20px;
         margin: 10px;
+        max-width: 90%;
+      }
+      
+      .title {
+        font-size: 32px;
+        margin-bottom: 20px;
+      }
+      
+      .message {
+        font-size: 20px;
+        margin-bottom: 20px;
+      }
+      
+      .heart {
+        font-size: 50px;
+        margin: 15px 0;
+      }
+      
+      .flower {
+        width: 120px;
+        height: 120px;
+        margin: 15px auto;
+      }
+      
+      .flower + .flower {
+        margin-top: 30px;
+      }
+      
+      .signature {
+        font-size: 16px;
+        margin-top: 10px;
+      }
+    }
+    
+    /* Çok küçük ekranlar için */
+    @media (max-width: 480px) {
+      body {
+        padding: 15px 5px;
+      }
+      
+      .container {
+        padding: 25px 15px;
+        margin: 5px;
+      }
+      
+      .title {
+        font-size: 28px;
+        margin-bottom: 15px;
+      }
+      
+      .message {
+        font-size: 18px;
+        margin-bottom: 15px;
+      }
+      
+      .heart {
+        font-size: 40px;
+        margin: 10px 0;
+      }
+      
+      .flower {
+        width: 100px;
+        height: 100px;
+        margin: 10px auto;
+      }
+      
+      .flower + .flower {
+        margin-top: 25px;
+      }
+      
+      .signature {
+        font-size: 14px;
+        margin-top: 8px;
       }
     }
   </style>
