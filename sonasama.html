@@ -67,8 +67,12 @@
     noBtn.addEventListener('touchstart', moveButton);
 
     yesBtn.addEventListener('click', () => {
-      alert('Teşekkürler! Onayladın 😊');
-    });
+  window.location.href = 'evet.html';
+});
+
+noBtn.addEventListener('click', () => {
+  window.location.href = 'hayir.html';
+});
   </script>
 </body>
 </html>
