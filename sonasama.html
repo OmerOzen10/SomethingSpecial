@@ -15,64 +15,189 @@
       margin: 0;
       color: #8b008b;
       text-align: center;
+      overflow: hidden;
     }
+    
+    .header-text {
+      position: absolute;
+      top: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 20;
+    }
+    
+    .main-title {
+      font-size: 52px;
+      font-weight: bold;
+      color: #ff1493;
+      text-shadow: 3px 3px 6px rgba(255, 20, 147, 0.5);
+      margin-bottom: 20px;
+      animation: glow 2s ease-in-out infinite alternate;
+      font-family: 'Impact', 'Arial Black', 'Comic Sans MS', cursive, sans-serif;
+      letter-spacing: 2px;
+    }
+    
+    @keyframes glow {
+      from {
+        text-shadow: 3px 3px 6px rgba(255, 20, 147, 0.5), 0 0 10px rgba(255, 20, 147, 0.3);
+      }
+      to {
+        text-shadow: 3px 3px 6px rgba(255, 20, 147, 0.8), 0 0 20px rgba(255, 20, 147, 0.6), 0 0 30px rgba(255, 20, 147, 0.4);
+      }
+    }
+    
+    .subtitle {
+      font-size: 32px;
+      color: #8b008b;
+      opacity: 0;
+      animation: slideDown 1.5s ease-out 0.5s forwards;
+      margin-bottom: 30px;
+      font-family: 'Comic Sans MS', 'Arial Black', cursive, sans-serif;
+      font-weight: bold;
+      text-shadow: 2px 2px 4px rgba(139, 0, 139, 0.3);
+    }
+    
+    @keyframes slideDown {
+      0% {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
     h1 {
-      font-size: 40px;
+      font-size: 48px;
       margin-bottom: 20px;
       text-shadow: 2px 2px 4px rgba(230, 0, 100, 0.7);
     }
-    #buttonContainer {
-      margin-top: 30px;
+    p {
+      font-size: 24px;
+      margin-bottom: 40px;
     }
     button {
-      padding: 12px 30px;
-      font-size: 20px;
+      padding: 15px 40px;
+      font-size: 22px;
       background-color: #ff69b4;
       border: none;
       border-radius: 12px;
       color: white;
       cursor: pointer;
       box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
-      margin: 0 10px;
-      transition: background-color 0.3s ease;
-      position: relative;
+      transition: all 0.3s ease;
+      margin: 0 15px;
+      position: absolute;
+      z-index: 30;
     }
     button:hover {
       background-color: #ff1493;
     }
+    #buttonContainer {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #yesBtn {
+      position: relative;
+      z-index: 30;
+    }
+    #noBtn {
+      position: relative;
+      z-index: 30;
+      margin-left: 20px;
+    }
+
+    .special-image {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 400px;
+      height: 400px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      z-index: 15;
+      animation: bounce 2s ease-in-out infinite;
+      margin: auto;
+      display: block;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
   </style>
 </head>
 <body>
-  <h1>Baronu çok seviyorum ve çok aşığım ❤️</h1>
+  <div class="header-text">
+    <h1 class="main-title">Ve Son Aşamadayız</h1>
+    <p class="subtitle">Baronu çok seviyorum ve çok aşığım</p>
+  </div>
   <div id="buttonContainer">
     <button id="yesBtn">Evet</button>
     <button id="noBtn">Hayır</button>
   </div>
+  <img src="depositphotos_71302763-stock-illustration-evil-emoticon-with-wringing-hands.jpg" alt="Özel Resim" class="special-image">
 
   <script>
     const noBtn = document.getElementById('noBtn');
     const yesBtn = document.getElementById('yesBtn');
+    const container = document.getElementById('buttonContainer');
+
+    noBtn.addEventListener('mouseenter', () => {
+      moveButton();
+    });
+
+    // Mobil için touch event ekle
+    noBtn.addEventListener('touchstart', (e) => {
+      e.preventDefault(); // Varsayılan touch davranışını engelle
+      moveButton();
+    });
 
     function moveButton() {
-      const containerWidth = window.innerWidth;
-      const maxOffset = containerWidth - noBtn.offsetWidth - 20;
-      const randomX = Math.floor(Math.random() * maxOffset);
+      // Butonu ekranın rastgele bir yerine taşı
+      const containerRect = container.getBoundingClientRect();
+      const noBtnRect = noBtn.getBoundingClientRect();
 
+      // Absolute pozisyon yap ki ekranda serbest hareket edebilsin
       noBtn.style.position = 'absolute';
-      noBtn.style.top = noBtn.offsetTop + 'px';
-      noBtn.style.left = randomX + 'px';
+
+      // Maksimum hareket mesafesi (ekran genişliği - buton genişliği)
+      // Daha büyük kenar boşluğu bırak ki buton her zaman görünür olsun
+      const maxMoveX = window.innerWidth - noBtn.offsetWidth - 100; // 100px kenar boşluğu
+      const maxMoveY = window.innerHeight - noBtn.offsetHeight - 100; // 100px kenar boşluğu
+
+      // Minimum pozisyon (çok kenara gitmesin ve yazıların altına kaçmasın)
+      const minMoveX = 50;
+      const minMoveY = 200; // Yazıların altında kalsın
+
+      // Rastgele yeni pozisyon (minimum ve maksimum sınırlar içinde)
+      let newLeft = Math.floor(Math.random() * (maxMoveX - minMoveX)) + minMoveX;
+      let newTop = Math.floor(Math.random() * (maxMoveY - minMoveY)) + minMoveY;
+
+      // "Evet" butonunun yakınında olmamasını sağla
+      const yesBtnRect = yesBtn.getBoundingClientRect();
+      const distance = 100; // Minimum mesafe
+
+      while (Math.abs(newLeft - yesBtnRect.left) < distance && 
+             Math.abs(newTop - yesBtnRect.top) < distance) {
+        newLeft = Math.floor(Math.random() * (maxMoveX - minMoveX)) + minMoveX;
+        newTop = Math.floor(Math.random() * (maxMoveY - minMoveY)) + minMoveY;
+      }
+
+      noBtn.style.left = newLeft + 'px';
+      noBtn.style.top = newTop + 'px';
+      noBtn.style.transform = 'none'; // CSS transform'u kaldır
     }
 
-    noBtn.addEventListener('mouseenter', moveButton);
-    noBtn.addEventListener('touchstart', moveButton);
-
     yesBtn.addEventListener('click', () => {
-  window.location.href = 'evet.html';
-});
-
-noBtn.addEventListener('click', () => {
-  window.location.href = 'hayir.html';
-});
+      window.location.href = 'evet.html';
+    });
   </script>
 </body>
 </html>

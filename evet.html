@@ -1,26 +1,229 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <title>Evet Sayfası</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>❤️ Seni Seviyorum ❤️</title>
   <style>
     body {
-      background-color: #d1ffd6;
+      background: linear-gradient(135deg, #ff69b4, #ff1493, #ff69b4);
       font-family: 'Comic Sans MS', cursive, sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      margin: 0;
-      color: #206020;
       text-align: center;
+      overflow: hidden;
+      animation: backgroundShift 3s ease-in-out infinite;
     }
-    h1 {
+
+    @keyframes backgroundShift {
+      0%, 100% { background: linear-gradient(135deg, #ff69b4, #ff1493, #ff69b4); }
+      50% { background: linear-gradient(135deg, #ff1493, #ff69b4, #ff1493); }
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      max-width: 600px;
+      margin: 20px;
+      animation: slideIn 1s ease-out;
+    }
+
+    @keyframes slideIn {
+      0% {
+        opacity: 0;
+        transform: translateY(-50px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .title {
       font-size: 48px;
+      font-weight: bold;
+      color: #ff1493;
+      text-shadow: 3px 3px 6px rgba(255, 20, 147, 0.5);
+      margin-bottom: 30px;
+      font-family: 'Impact', 'Arial Black', sans-serif;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 3px 3px 6px rgba(255, 20, 147, 0.5), 0 0 10px rgba(255, 20, 147, 0.3);
+      }
+      to {
+        text-shadow: 3px 3px 6px rgba(255, 20, 147, 0.8), 0 0 20px rgba(255, 20, 147, 0.6), 0 0 30px rgba(255, 20, 147, 0.4);
+      }
+    }
+
+    .message {
+      font-size: 28px;
+      color: #8b008b;
+      line-height: 1.6;
+      margin-bottom: 30px;
+      font-weight: bold;
+      text-shadow: 1px 1px 2px rgba(139, 0, 139, 0.3);
+      animation: fadeIn 2s ease-out 0.5s both;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .heart {
+      font-size: 60px;
+      color: #ff1493;
+      margin: 20px 0;
+      animation: heartbeat 1.5s ease-in-out infinite;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    .flower {
+      width: 180px;
+      height: 180px;
+      margin: 20px auto;
+      animation: flowerBloom 3s ease-in-out infinite;
+      border-radius: 50%;
+      box-shadow: 0 5px 15px rgba(255, 20, 147, 0.3);
+    }
+
+    .flower + .flower {
+      margin-top: 40px;
+    }
+
+    @keyframes flowerBloom {
+      0%, 100% { 
+        transform: scale(1) rotate(0deg);
+        filter: brightness(1);
+      }
+      50% { 
+        transform: scale(1.1) rotate(5deg);
+        filter: brightness(1.2);
+      }
+    }
+
+    .signature {
+      font-size: 18px;
+      color: #ff1493;
+      font-style: italic;
+      margin-top: 15px;
+      font-weight: bold;
+      text-shadow: 1px 1px 2px rgba(255, 20, 147, 0.3);
+    }
+
+    .floating-hearts {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .floating-heart {
+      position: absolute;
+      font-size: 30px;
+      color: rgba(255, 20, 147, 0.6);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Mobil uyumluluk */
+    @media (max-width: 768px) {
+      .title {
+        font-size: 32px;
+      }
+      
+      .message {
+        font-size: 20px;
+      }
+      
+      .container {
+        padding: 30px 20px;
+        margin: 10px;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>Tebrikler! Evet dedin 😊</h1>
+  <div class="floating-hearts" id="floatingHearts"></div>
+  
+  <div class="container">
+    <div class="title">Biliyordum Ben De Sana Aşığım! ❤️</div>
+    <div class="message">
+      Şu an belki yanında değilim ama ileride hep yanında olup mutlu olman için elimden gelen her şeyi yapacağım. <br>
+      İyi ki varsın Güzelim! 💕
+    </div>
+    <div class="heart">💖</div>
+    <img src="cıcek.webp" alt="Güzel Çiçek" class="flower">
+    <img src="cıcek2.jpg" alt="Güzel Çiçek" class="flower">
+ 
+    <div class="signature">-Baron Ömer</div>
+  </div>
+
+  <script>
+    // Yüzen kalpler oluştur
+    function createFloatingHearts() {
+      const container = document.getElementById('floatingHearts');
+      const heart = document.createElement('div');
+      heart.className = 'floating-heart';
+      heart.innerHTML = '💕';
+      heart.style.left = Math.random() * 100 + '%';
+      heart.style.animationDelay = Math.random() * 6 + 's';
+      container.appendChild(heart);
+      
+      // 6 saniye sonra kalbi kaldır
+      setTimeout(() => {
+        if (heart.parentNode) {
+          heart.parentNode.removeChild(heart);
+        }
+      }, 6000);
+    }
+
+    // Her 2 saniyede bir kalp oluştur
+    setInterval(createFloatingHearts, 2000);
+    
+    // Sayfa yüklendiğinde birkaç kalp oluştur
+    for (let i = 0; i < 5; i++) {
+      setTimeout(createFloatingHearts, i * 500);
+    }
+  </script>
 </body>
 </html>
